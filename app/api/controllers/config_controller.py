@@ -51,6 +51,13 @@ status_check_interval_model = api.model('StatusCheckInterval', {
 
 @api.route('/base_url')
 class BaseURL(Resource):
+    def get(self):
+        """Get base URL for acestream links."""
+        try:
+            config = Config()
+            return {"value": config.base_url}
+        except Exception as e:
+            api.abort(500, str(e))
     @api.doc('update_base_url')
     @api.expect(base_url_model)
     def put(self):
