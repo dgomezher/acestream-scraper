@@ -70,6 +70,15 @@ class BaseURL(Resource):
 
 @api.route('/ace_engine_url')
 class AceEngineURL(Resource):
+    @api.doc('get_ace_engine_url')
+    def get(self):
+        """Get current Acestream Engine URL."""
+        try:
+            config = Config()
+            return {"ace_engine_url": config.ace_engine_url}
+        except Exception as e:
+            api.abort(500, str(e))
+    
     @api.doc('update_ace_engine_url')
     @api.expect(ace_engine_url_model)
     def put(self):
