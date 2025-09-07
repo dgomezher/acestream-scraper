@@ -5,7 +5,7 @@
 // Function to get the base URL from config
 async function getAceEngineUrl() {
     try {
-        const response = await fetch('/api/config/ace-engine-url');
+        const response = await fetch('/api/config/ace_engine_url');
         const data = await response.json();
         return data.value || 'http://127.0.0.1:6878'; // Default to localhost if not set
     } catch (error) {
